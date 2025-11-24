@@ -637,8 +637,13 @@
 
                 const result = await response.json();
 
-                if (result.result?.data?.success) {
+                // Vérifier si la réponse est un succès (tRPC format)
+                if (result.result && result.result.data && result.result.data.json && result.result.data.json.success) {
                     // Succès
+                    document.getElementById('contactSection').classList.remove('active');
+                    document.getElementById('resultsSection').classList.add('active');
+                } else if (response.ok) {
+                    // Fallback: si le status est 200, considérer comme succès
                     document.getElementById('contactSection').classList.remove('active');
                     document.getElementById('resultsSection').classList.add('active');
                 } else {
@@ -674,4 +679,3 @@
     </script>
 </body>
 </html>
-
