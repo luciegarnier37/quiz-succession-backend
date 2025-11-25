@@ -42,6 +42,14 @@
             }
         }
 
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
         .header {
             text-align: center;
             margin-bottom: 40px;
@@ -66,16 +74,6 @@
             margin-bottom: 10px;
         }
 
-        .warning {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 12px 16px;
-            border-radius: 4px;
-            color: #856404;
-            font-size: 14px;
-            margin-top: 20px;
-        }
-
         .progress-bar {
             width: 100%;
             height: 4px;
@@ -98,127 +96,78 @@
             color: white;
             padding: 8px 16px;
             border-radius: 20px;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
             margin-bottom: 20px;
         }
 
-        .question-title {
-            font-size: 24px;
+        .question-text {
+            font-size: 22px;
             color: #333;
             margin-bottom: 30px;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-
-        .answers-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
+            font-weight: 500;
+            text-align: center;
         }
 
         .answer-option {
-            padding: 16px 20px;
+            padding: 20px;
+            margin-bottom: 15px;
             border: 2px solid #e0e0e0;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 16px;
-            color: #333;
             background: white;
-            text-align: left;
         }
 
         .answer-option:hover {
             border-color: #667eea;
-            background: #f5f7ff;
-            transform: translateX(4px);
+            background: #f8f9ff;
         }
 
         .answer-option.selected {
             border-color: #667eea;
-            background: #f5f7ff;
-            font-weight: 600;
-            color: #667eea;
+            background: #f0f4ff;
         }
 
-        .form-section {
-            display: none;
-        }
-
-        .form-section.active {
-            display: block;
-            animation: slideUp 0.3s ease-out;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+        .answer-option span {
             font-size: 16px;
-            transition: border-color 0.3s ease;
-            font-family: inherit;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-            background: #f5f7ff;
-        }
-
-        .form-group input::placeholder {
-            color: #999;
-        }
-
-        .info-box {
-            background: #e3f2fd;
-            border-left: 4px solid #2196f3;
-            padding: 12px 16px;
-            border-radius: 4px;
-            color: #1565c0;
-            font-size: 14px;
-            margin-bottom: 20px;
+            color: #333;
+            font-weight: 500;
         }
 
         .button-group {
             display: flex;
-            gap: 12px;
-            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: space-between;
         }
 
-        button {
-            padding: 12px 32px;
+        .btn {
+            flex: 1;
+            padding: 12px 24px;
             border: none;
             border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: inherit;
+        }
+
+        .btn-back {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-back:hover {
+            background: #e0e0e0;
         }
 
         .btn-next {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            flex: 1;
-            min-width: 150px;
         }
 
-        .btn-next:hover:not(:disabled) {
+        .btn-next:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
         }
@@ -228,86 +177,52 @@
             cursor: not-allowed;
         }
 
-        .btn-back {
-            background: #f0f0f0;
+        /* Contact Form Styles */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
             color: #333;
-            min-width: 100px;
-        }
-
-        .btn-back:hover {
-            background: #e0e0e0;
-        }
-
-        .btn-submit {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            width: 100%;
-            padding: 16px;
-            font-size: 18px;
-        }
-
-        .btn-submit:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
-        }
-
-        .btn-submit:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .results-section {
-            display: none;
-            text-align: center;
-        }
-
-        .results-section.active {
-            display: block;
-            animation: slideUp 0.3s ease-out;
-        }
-
-        .results-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-        }
-
-        .results-title {
-            font-size: 28px;
-            color: #333;
-            margin-bottom: 15px;
             font-weight: 600;
+            font-size: 14px;
         }
 
-        .results-message {
-            color: #666;
+        .form-group input {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
             font-size: 16px;
-            line-height: 1.6;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 12px 16px;
+            border-radius: 4px;
+            color: #333;
+            font-size: 14px;
             margin-bottom: 20px;
-        }
-
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .error-message {
-            background: #fee;
-            border-left: 4px solid #f44336;
-            padding: 12px 16px;
-            border-radius: 4px;
-            color: #c62828;
+            color: #d32f2f;
             font-size: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             display: none;
         }
 
@@ -315,348 +230,559 @@
             display: block;
         }
 
+        /* Results Styles */
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .results-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .results-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .results-message {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .recommendation-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .recommendation-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .appointment-section {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .appointment-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .appointment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .appointment-slot {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .appointment-slot:hover {
+            border-color: #667eea;
+            background: white;
+        }
+
+        .appointment-slot.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+            font-weight: 600;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .btn-restart {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .success-message {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            border-radius: 4px;
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+
         @media (max-width: 600px) {
             .container {
-                padding: 24px;
+                padding: 20px;
             }
 
-            .header h1 {
-                font-size: 22px;
-            }
-
-            .question-title {
-                font-size: 20px;
+            .appointment-grid {
+                grid-template-columns: 1fr;
             }
 
             .button-group {
                 flex-direction: column;
-            }
-
-            .btn-back, .btn-next {
-                width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Section d'accueil -->
-        <div id="welcomeSection" class="form-section active">
+        <!-- Welcome Section -->
+        <div id="welcomeSection" class="section active">
             <div class="header">
                 <div class="logo">🏠</div>
                 <h1>Succession : quelle est la meilleure manière d'avancer sereinement avec votre maison héritée ?</h1>
                 <p>La perte d'un proche est déjà une épreuve difficile. Quand un bien immobilier s'ajoute à la succession, les émotions et les contraintes administratives peuvent devenir un véritable fardeau.</p>
                 <p>Ce quiz a pour but de vous offrir un premier éclairage sur votre situation. En quelques questions simples, vous obtiendrez un bilan adapté à votre contexte :</p>
-                <ul style="text-align: left; margin: 15px 0; color: #666;">
-                    <li>✓ êtes-vous prêt à vendre rapidement ?</li>
-                    <li>✓ avez-vous besoin de temps ?</li>
-                    <li>✓ ou plutôt d'un accompagnement pour débloquer une situation familiale ?</li>
-                </ul>
-                <div class="warning">⚠️ Répondez en toute sincérité : vos réponses resteront confidentielles.</div>
+                <div style="text-align: left; margin: 20px 0; color: #666;">
+                    <p>✓ êtes-vous prêt à vendre rapidement ?</p>
+                    <p>✓ avez-vous besoin de temps ?</p>
+                    <p>✓ ou plutôt d'un accompagnement pour débloquer une situation familiale ?</p>
+                </div>
+                <div class="info-box">⚠️ Répondez en toute sincérité : vos réponses resteront confidentielles.</div>
             </div>
-            <button class="btn-next" onclick="startQuiz()">Commencer le quiz (2 minutes)</button>
+            <button class="btn btn-next" onclick="startQuiz()" style="width: 100%;">Commencer le quiz (2 minutes)</button>
         </div>
 
-        <!-- Section quiz -->
-        <div id="quizSection" class="form-section">
+        <!-- Quiz Questions -->
+        <div id="quizSection" class="section">
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <div class="question-number" id="questionNumber">Question 1 / 7</div>
-            <h2 class="question-title" id="questionTitle"></h2>
-            <div class="answers-container" id="answersContainer"></div>
-            <div class="error-message" id="errorMessage"></div>
+
+            <div class="question-number" id="questionNumber"></div>
+            <div class="question-text" id="questionText"></div>
+            <div id="answersContainer"></div>
+
             <div class="button-group">
-                <button class="btn-back" onclick="previousQuestion()" id="btnBack" style="display: none;">← Retour</button>
-                <button class="btn-next" onclick="nextQuestion()" id="btnNext" disabled>Suivant →</button>
+                <button class="btn btn-back" onclick="previousQuestion()" id="btnBack" style="display: none;">← Retour</button>
+                <button class="btn btn-next" onclick="nextQuestion()" id="btnNext" disabled>Continuer →</button>
             </div>
         </div>
 
-        <!-- Section formulaire de contact -->
-        <div id="contactSection" class="form-section">
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 100%;"></div>
+        <!-- Contact Form Section -->
+        <div id="contactSection" class="section">
+            <div class="header">
+                <div class="logo">🙏</div>
+                <h1>Merci pour vos réponses !</h1>
+                <p>Pour recevoir votre bilan personnalisé, veuillez renseigner vos coordonnées :</p>
             </div>
-            <div style="text-align: center; margin-bottom: 30px;">
-                <div style="font-size: 48px; margin-bottom: 15px;">🙏</div>
-                <h2 class="results-title">Merci pour vos réponses !</h2>
-                <p style="color: #666; margin-bottom: 20px;">Pour recevoir votre bilan personnalisé, veuillez renseigner vos coordonnées :</p>
-            </div>
-            <form id="contactForm" onsubmit="submitQuiz(event)">
+
+            <form class="contact-form" onsubmit="submitForm(event)">
                 <div class="form-group">
                     <label for="fullName">Nom & Prénom *</label>
                     <input type="text" id="fullName" placeholder="Votre nom complet" required>
                 </div>
+
                 <div class="form-group">
                     <label for="phone">Numéro de téléphone *</label>
                     <input type="tel" id="phone" placeholder="06 XX XX XX XX" required>
                 </div>
+
                 <div class="form-group">
                     <label for="address">Adresse du bien à estimer (facultatif)</label>
                     <input type="text" id="address" placeholder="Adresse du bien">
                 </div>
+
                 <div class="info-box">
                     ⚠️ Vos données sont confidentielles et uniquement utilisées pour vous transmettre votre bilan.
                 </div>
+
                 <div class="error-message" id="submitErrorMessage"></div>
+
                 <button type="submit" class="btn-submit" id="submitBtn">✅ Valider et recevoir mes résultats</button>
             </form>
         </div>
 
-        <!-- Section résultats -->
-        <div id="resultsSection" class="form-section results-section">
-            <div class="results-icon">✅</div>
-            <h2 class="results-title">Merci !</h2>
-            <p class="results-message">Vos données ont été enregistrées avec succès.</p>
-            <p class="results-message">Vous allez recevoir votre bilan personnalisé par email très prochainement.</p>
-            <button class="btn-next" onclick="restartQuiz()" style="margin-top: 20px;">Recommencer le quiz</button>
+        <!-- Results Section -->
+        <div id="resultsSection" class="section">
+            <div class="results-header">
+                <div class="results-icon">✅</div>
+                <h2 class="results-title">Votre Bilan Personnalisé</h2>
+            </div>
+
+            <div id="resultsContent"></div>
+
+            <div class="appointment-section">
+                <h3>📅 Prendre rendez-vous avec un conseiller</h3>
+                <p style="color: #666; margin-bottom: 15px; font-size: 14px;">Sélectionnez un créneau qui vous convient :</p>
+                
+                <div class="appointment-grid" id="appointmentSlots"></div>
+
+                <div class="form-group">
+                    <label for="appointmentEmail">Votre email pour confirmer le rendez-vous</label>
+                    <input type="email" id="appointmentEmail" placeholder="votre.email@example.com">
+                </div>
+
+                <button class="btn-submit" onclick="confirmAppointment()">Confirmer mon rendez-vous</button>
+            </div>
+
+            <button class="btn-restart" onclick="restartQuiz()">Recommencer le quiz</button>
         </div>
     </div>
 
     <script>
-        // ========================================
-        // CONFIGURATION
-        // ========================================
         const BACKEND_URL = 'https://3000-itddum2oyz5xfwc5avgpn-88307ec7.manusvm.computer';
 
-        // Questions du quiz
         const questions = [
             {
                 id: 'q1',
-                title: 'Quand vous pensez à ce bien hérité, quel sentiment domine ?',
+                text: 'Quand vous pensez à ce bien hérité, quel sentiment domine ?',
                 answers: [
-                    '💝 Attachement affectif',
-                    '😰 Stress lié aux démarches',
-                    '😌 Soulagement à l\'idée de tourner la page'
+                    { text: '💝 Attachement affectif', value: 'attachment' },
+                    { text: '😰 Stress lié aux démarches', value: 'stress' },
+                    { text: '😌 Soulagement à l\'idée de tourner la page', value: 'relief' }
                 ]
             },
             {
                 id: 'q2',
-                title: 'Combien d\'héritiers sont impliqués dans cette succession ?',
+                text: 'Avez-vous d\'autres héritiers impliqués dans cette succession ?',
                 answers: [
-                    '👤 Je suis seul(e)',
-                    '👥 Nous sommes plusieurs mais en accord',
-                    '⚡ Nous sommes plusieurs et il y a des désaccords'
+                    { text: '👤 Non, je suis seul héritier', value: 'alone' },
+                    { text: '👥 Oui, avec d\'autres membres de la famille', value: 'multiple' },
+                    { text: '❓ Je ne sais pas encore', value: 'unknown' }
                 ]
             },
             {
                 id: 'q3',
-                title: 'Le bien est actuellement :',
+                text: 'Quel type de bien avez-vous hérité ?',
                 answers: [
-                    '🏡 Habité par un héritier',
-                    '🧹 Vide mais entretenu',
-                    '💸 Vide et coûte cher en entretien/taxes',
-                    '🏠 Loué'
+                    { text: '🏠 Une maison d\'habitation', value: 'house' },
+                    { text: '🏢 Un appartement', value: 'apartment' },
+                    { text: '🏗️ Un terrain ou un bien commercial', value: 'land' }
                 ]
             },
             {
                 id: 'q4',
-                title: 'Avez-vous déjà échangé avec vos proches sur la possibilité de vendre ?',
+                text: 'Êtes-vous prêt(e) à vendre ce bien rapidement ?',
                 answers: [
-                    '✅ Oui, et tout le monde est d\'accord',
-                    '🤔 Oui, mais il y a des divergences',
-                    '❓ Pas encore'
+                    { text: '✅ Oui, je veux vendre rapidement', value: 'yes_sell' },
+                    { text: '⏳ Je ne sais pas encore', value: 'maybe' },
+                    { text: '❌ Non, je veux le garder ou attendre', value: 'no_sell' }
                 ]
             },
             {
                 id: 'q5',
-                title: 'Dans quel délai aimeriez-vous que cette situation trouve une issue ?',
+                text: 'Quel délai vous semble raisonnable pour finaliser cette succession ?',
                 answers: [
-                    '⚡ Rapidement (1 à 3 mois)',
-                    '📅 D\'ici quelques mois',
-                    '🕐 Pas d\'urgence'
+                    { text: '⚡ Moins de 3 mois', value: '3months' },
+                    { text: '📅 Entre 3 et 6 mois', value: '6months' },
+                    { text: '🐢 Plus de 6 mois', value: 'more_6months' }
                 ]
             },
             {
                 id: 'q6',
-                title: 'Selon vous, quel est le plus gros obstacle aujourd\'hui ?',
+                text: 'Y a-t-il des obstacles ou des conflits familiaux concernant ce bien ?',
                 answers: [
-                    '💔 L\'attachement émotionnel',
-                    '📋 Les démarches administratives/juridiques',
-                    '⏰ Le manque de temps'
+                    { text: '✅ Non, tout est clair', value: 'no_obstacle' },
+                    { text: '⚠️ Peut-être, des discussions en cours', value: 'maybe_obstacle' },
+                    { text: '🚨 Oui, il y a des tensions', value: 'yes_obstacle' }
                 ]
             },
             {
                 id: 'q7',
-                title: 'Seriez-vous prêt(e) à échanger gratuitement avec un conseiller pour trouver des solutions adaptées à votre famille ?',
+                text: 'Seriez-vous prêt(e) à échanger gratuitement avec un conseiller pour trouver des solutions adaptées à votre famille ?',
                 answers: [
-                    '😊 Oui, avec plaisir',
-                    '🤔 Peut-être, j\'aimerais en savoir plus',
-                    '🚫 Non, pas pour le moment'
+                    { text: '😊 Oui, avec plaisir', value: 'yes_consultation' },
+                    { text: '🤔 Peut-être, j\'aimerais en savoir plus', value: 'maybe_consultation' },
+                    { text: '🚫 Non, pas pour le moment', value: 'no_consultation' }
                 ]
             }
         ];
 
-        // État du quiz
+        const recommendations = {
+            'fast_seller': {
+                title: '🚀 Vous êtes un vendeur rapide',
+                description: 'Vous souhaitez finaliser rapidement cette succession. Nous pouvons vous aider à :'
+            },
+            'thoughtful': {
+                title: '🤔 Vous êtes réfléchi',
+                description: 'Vous prenez le temps de bien réfléchir à votre situation. Nous pouvons vous aider à :'
+            },
+            'keeper': {
+                title: '🏠 Vous souhaitez conserver le bien',
+                description: 'Vous envisagez de garder ce bien. Nous pouvons vous aider à :'
+            },
+            'family_issues': {
+                title: '👨‍👩‍👧‍👦 Situation familiale complexe',
+                description: 'Il existe des enjeux familiaux. Nous pouvons vous aider à :'
+            }
+        };
+
         let currentQuestion = 0;
         let answers = {};
-
-        // ========================================
-        // FONCTIONS PRINCIPALES
-        // ========================================
+        let selectedAppointment = null;
 
         function startQuiz() {
             document.getElementById('welcomeSection').classList.remove('active');
             document.getElementById('quizSection').classList.add('active');
-            displayQuestion();
+            showQuestion(0);
         }
 
-        function displayQuestion() {
-            const question = questions[currentQuestion];
-            const progress = ((currentQuestion + 1) / questions.length) * 100;
+        function showQuestion(index) {
+            currentQuestion = index;
+            const question = questions[index];
+            
+            document.getElementById('questionNumber').textContent = `Question ${index + 1} / ${questions.length}`;
+            document.getElementById('questionText').textContent = question.text;
+            
+            const container = document.getElementById('answersContainer');
+            container.innerHTML = '';
+            
+            question.answers.forEach(answer => {
+                const div = document.createElement('div');
+                div.className = 'answer-option' + (answers[question.id] === answer.value ? ' selected' : '');
+                div.innerHTML = `<span>${answer.text}</span>`;
+                div.onclick = () => selectAnswer(question.id, answer.value, div);
+                container.appendChild(div);
+            });
 
-            // Mise à jour de la barre de progression
+            const progress = ((index + 1) / questions.length) * 100;
             document.getElementById('progressFill').style.width = progress + '%';
 
-            // Mise à jour du numéro de question
-            document.getElementById('questionNumber').textContent = `Question ${currentQuestion + 1} / ${questions.length}`;
-
-            // Mise à jour du titre
-            document.getElementById('questionTitle').textContent = question.title;
-
-            // Affichage des réponses
-            const answersContainer = document.getElementById('answersContainer');
-            answersContainer.innerHTML = '';
-
-            question.answers.forEach((answer, index) => {
-                const button = document.createElement('div');
-                button.className = 'answer-option';
-                button.textContent = answer;
-                button.onclick = () => selectAnswer(answer, button);
-
-                // Marquer la réponse précédente comme sélectionnée
-                if (answers[question.id] === answer) {
-                    button.classList.add('selected');
-                }
-
-                answersContainer.appendChild(button);
-            });
-
-            // Mise à jour des boutons
-            const btnBack = document.getElementById('btnBack');
-            const btnNext = document.getElementById('btnNext');
-
-            btnBack.style.display = currentQuestion > 0 ? 'block' : 'none';
-            btnNext.disabled = !answers[question.id];
-            btnNext.textContent = currentQuestion === questions.length - 1 ? 'Continuer →' : 'Suivant →';
-
-            // Effacer le message d'erreur
-            document.getElementById('errorMessage').classList.remove('show');
+            document.getElementById('btnBack').style.display = index > 0 ? 'block' : 'none';
+            document.getElementById('btnNext').disabled = !answers[question.id];
         }
 
-        function selectAnswer(answer, element) {
-            const question = questions[currentQuestion];
-
-            // Retirer la classe selected de tous les boutons
-            document.querySelectorAll('.answer-option').forEach(btn => {
-                btn.classList.remove('selected');
-            });
-
-            // Ajouter la classe selected au bouton cliqué
+        function selectAnswer(questionId, value, element) {
+            answers[questionId] = value;
+            
+            const options = document.querySelectorAll('.answer-option');
+            options.forEach(opt => opt.classList.remove('selected'));
             element.classList.add('selected');
-
-            // Enregistrer la réponse
-            answers[question.id] = answer;
-
-            // Activer le bouton suivant
+            
             document.getElementById('btnNext').disabled = false;
         }
 
         function nextQuestion() {
-            if (!answers[questions[currentQuestion].id]) {
-                document.getElementById('errorMessage').textContent = 'Veuillez sélectionner une réponse';
-                document.getElementById('errorMessage').classList.add('show');
-                return;
-            }
-
             if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                displayQuestion();
+                showQuestion(currentQuestion + 1);
             } else {
-                // Aller au formulaire de contact
-                document.getElementById('quizSection').classList.remove('active');
-                document.getElementById('contactSection').classList.add('active');
+                showContactForm();
             }
         }
 
         function previousQuestion() {
             if (currentQuestion > 0) {
-                currentQuestion--;
-                displayQuestion();
+                showQuestion(currentQuestion - 1);
             }
         }
 
-        async function submitQuiz(event) {
+        function showContactForm() {
+            document.getElementById('quizSection').classList.remove('active');
+            document.getElementById('contactSection').classList.add('active');
+        }
+
+        function submitForm(event) {
             event.preventDefault();
 
-            const fullName = document.getElementById('fullName').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const address = document.getElementById('address').value.trim();
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
 
-            // Validation
-            if (!fullName) {
-                showSubmitError('Veuillez entrer votre nom');
+            if (!fullName || !phone) {
+                showSubmitError('Veuillez remplir tous les champs obligatoires.');
                 return;
             }
 
-            if (!phone) {
-                showSubmitError('Veuillez entrer votre téléphone');
-                return;
-            }
-
-            // Préparer les données
-            const quizData = {
-                fullName: fullName,
-                phone: phone,
-                address: address || null,
-                q1_sentiment: answers['q1'] || null,
-                q2_heirs: answers['q2'] || null,
-                q3_property_state: answers['q3'] || null,
-                q4_family_discussion: answers['q4'] || null,
-                q5_timeline: answers['q5'] || null,
-                q6_obstacle: answers['q6'] || null,
-                q7_consultation: answers['q7'] || null,
-            };
-
-            // Désactiver le bouton
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="loading"></span> Envoi en cours...';
 
-            try {
-                // Envoyer les données au backend
-                const response = await fetch(`${BACKEND_URL}/api/trpc/quiz.submit`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        json: quizData,
-                    }),
-                });
+            const quizData = {
+                fullName,
+                phone,
+                address,
+                q1_sentiment: answers['q1'],
+                q2_heritiers: answers['q2'],
+                q3_bien: answers['q3'],
+                q4_vente: answers['q4'],
+                q5_delai: answers['q5'],
+                q6_obstacle: answers['q6'],
+                q7_consultation: answers['q7']
+            };
 
-                const result = await response.json();
-
-                // Vérifier si la réponse est un succès (tRPC format)
+            fetch(`${BACKEND_URL}/api/trpc/quiz.submit`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    json: quizData,
+                }),
+            })
+            .then(response => response.json())
+            .then(result => {
                 if (result.result && result.result.data && result.result.data.json && result.result.data.json.success) {
-                    // Succès
-                    document.getElementById('contactSection').classList.remove('active');
-                    document.getElementById('resultsSection').classList.add('active');
+                    showResults();
                 } else if (response.ok) {
-                    // Fallback: si le status est 200, considérer comme succès
-                    document.getElementById('contactSection').classList.remove('active');
-                    document.getElementById('resultsSection').classList.add('active');
+                    showResults();
                 } else {
                     showSubmitError('Une erreur est survenue. Veuillez réessayer.');
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '✅ Valider et recevoir mes résultats';
                 }
-            } catch (error) {
+            })
+            .catch(error => {
                 console.error('Erreur:', error);
                 showSubmitError('Erreur de connexion. Veuillez vérifier votre connexion Internet.');
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '✅ Valider et recevoir mes résultats';
+            });
+        }
+
+        function showResults() {
+            document.getElementById('contactSection').classList.remove('active');
+            document.getElementById('resultsSection').classList.add('active');
+
+            const profile = determineProfile();
+            const resultsContent = document.getElementById('resultsContent');
+            
+            let html = `
+                <div class="success-message">
+                    ✅ Vos données ont été enregistrées avec succès et transmises à notre équipe.
+                </div>
+                <div class="recommendation-card">
+                    <h3>${profile.title}</h3>
+                    <p>${profile.description}</p>
+                    <ul style="margin-top: 10px; margin-left: 20px; color: #666; font-size: 14px;">
+                        <li>Évaluer la meilleure stratégie pour votre situation</li>
+                        <li>Vous accompagner dans les démarches administratives</li>
+                        <li>Trouver des solutions adaptées à votre contexte familial</li>
+                        <li>Maximiser la valeur de votre bien</li>
+                    </ul>
+                </div>
+            `;
+            
+            resultsContent.innerHTML = html;
+
+            generateAppointmentSlots();
+        }
+
+        function determineProfile() {
+            const q4 = answers['q4'];
+            const q5 = answers['q5'];
+            const q6 = answers['q6'];
+
+            if (q6 === 'yes_obstacle' || q6 === 'maybe_obstacle') {
+                return recommendations['family_issues'];
+            } else if (q4 === 'yes_sell' && (q5 === '3months' || q5 === '6months')) {
+                return recommendations['fast_seller'];
+            } else if (q4 === 'no_sell') {
+                return recommendations['keeper'];
+            } else {
+                return recommendations['thoughtful'];
             }
+        }
+
+        function generateAppointmentSlots() {
+            const slots = [
+                { day: 'Lundi', date: '2 décembre', time: '10:00' },
+                { day: 'Lundi', date: '2 décembre', time: '14:00' },
+                { day: 'Mardi', date: '3 décembre', time: '10:00' },
+                { day: 'Mardi', date: '3 décembre', time: '14:00' },
+                { day: 'Mercredi', date: '4 décembre', time: '10:00' },
+                { day: 'Mercredi', date: '4 décembre', time: '14:00' },
+            ];
+
+            const container = document.getElementById('appointmentSlots');
+            container.innerHTML = '';
+
+            slots.forEach((slot, index) => {
+                const div = document.createElement('div');
+                div.className = 'appointment-slot';
+                div.innerHTML = `<strong>${slot.time}</strong><br><small>${slot.day} ${slot.date}</small>`;
+                div.onclick = () => selectAppointment(index, div);
+                container.appendChild(div);
+            });
+        }
+
+        function selectAppointment(index, element) {
+            document.querySelectorAll('.appointment-slot').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedAppointment = index;
+        }
+
+        function confirmAppointment() {
+            const email = document.getElementById('appointmentEmail').value;
+            
+            if (!email) {
+                alert('Veuillez renseigner votre email.');
+                return;
+            }
+
+            if (selectedAppointment === null) {
+                alert('Veuillez sélectionner un créneau.');
+                return;
+            }
+
+            alert('Merci ! Votre rendez-vous a été confirmé. Un email de confirmation a été envoyé à ' + email);
+            restartQuiz();
         }
 
         function showSubmitError(message) {
@@ -668,13 +794,20 @@
         function restartQuiz() {
             currentQuestion = 0;
             answers = {};
-            document.getElementById('resultsSection').classList.remove('active');
+            selectedAppointment = null;
+            
             document.getElementById('welcomeSection').classList.add('active');
+            document.getElementById('quizSection').classList.remove('active');
+            document.getElementById('contactSection').classList.remove('active');
+            document.getElementById('resultsSection').classList.remove('active');
+            
             document.getElementById('fullName').value = '';
             document.getElementById('phone').value = '';
             document.getElementById('address').value = '';
+            document.getElementById('appointmentEmail').value = '';
             document.getElementById('submitBtn').disabled = false;
             document.getElementById('submitBtn').innerHTML = '✅ Valider et recevoir mes résultats';
+            document.getElementById('submitErrorMessage').classList.remove('show');
         }
     </script>
 </body>
