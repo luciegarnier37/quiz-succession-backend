@@ -248,11 +248,22 @@
             font-weight: 600;
         }
 
+        .profile-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
         .results-message {
             color: #666;
             font-size: 16px;
             line-height: 1.6;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .recommendation-card {
@@ -273,6 +284,17 @@
             color: #666;
             font-size: 14px;
             line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-card ul {
+            margin-left: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .recommendation-card li {
+            margin-bottom: 8px;
         }
 
         .appointment-section {
@@ -280,12 +302,20 @@
             padding: 20px;
             border-radius: 8px;
             margin-top: 30px;
+            border: 2px solid #667eea;
         }
 
         .appointment-section h3 {
             color: #333;
             margin-bottom: 15px;
             font-size: 18px;
+            font-weight: 600;
+        }
+
+        .appointment-intro {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
         }
 
         .appointment-grid {
@@ -303,6 +333,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             background: white;
+            font-size: 14px;
         }
 
         .appointment-slot:hover {
@@ -314,6 +345,17 @@
             border-color: #667eea;
             background: #f0f4ff;
             font-weight: 600;
+            border-width: 2px;
+        }
+
+        .appointment-slot strong {
+            display: block;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .appointment-slot small {
+            color: #666;
         }
 
         .btn-submit {
@@ -327,6 +369,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin-top: 15px;
         }
 
         .btn-submit:hover {
@@ -373,6 +416,12 @@
             border-radius: 4px;
             color: #2e7d32;
             margin-bottom: 20px;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 20px 0;
         }
 
         @media (max-width: 600px) {
@@ -464,13 +513,18 @@
             <div class="results-header">
                 <div class="results-icon">✅</div>
                 <h2 class="results-title">Votre Bilan Personnalisé</h2>
+                <div class="profile-badge" id="profileBadge"></div>
             </div>
 
-            <div id="resultsContent"></div>
+            <div class="results-message" id="resultsMessage"></div>
+
+            <div class="recommendation-card" id="recommendationCard"></div>
+
+            <div class="divider"></div>
 
             <div class="appointment-section">
                 <h3>📅 Prendre rendez-vous avec un conseiller</h3>
-                <p style="color: #666; margin-bottom: 15px; font-size: 14px;">Sélectionnez un créneau qui vous convient :</p>
+                <p class="appointment-intro">Sélectionnez un créneau qui vous convient pour discuter de votre situation :</p>
                 
                 <div class="appointment-grid" id="appointmentSlots"></div>
 
@@ -479,7 +533,7 @@
                     <input type="email" id="appointmentEmail" placeholder="votre.email@example.com">
                 </div>
 
-                <button class="btn-submit" onclick="confirmAppointment()">Confirmer mon rendez-vous</button>
+                <button class="btn-submit" onclick="confirmAppointment()">📞 Confirmer mon rendez-vous</button>
             </div>
 
             <button class="btn-restart" onclick="restartQuiz()">Recommencer le quiz</button>
@@ -555,28 +609,57 @@
             }
         ];
 
-        const recommendations = {
+        const profiles = {
             'fast_seller': {
-                title: '🚀 Vous êtes un vendeur rapide',
-                description: 'Vous souhaitez finaliser rapidement cette succession. Nous pouvons vous aider à :'
+                badge: '🚀 Vendeur Rapide',
+                title: 'Vous êtes un vendeur rapide',
+                message: 'Vous souhaitez finaliser rapidement cette succession et tourner la page. C\'est un choix légitime qui demande une bonne stratégie.',
+                recommendations: [
+                    'Évaluer le bien au juste prix pour une vente rapide',
+                    'Préparer les documents administratifs nécessaires',
+                    'Mettre en place une stratégie marketing efficace',
+                    'Négocier les meilleures conditions de vente'
+                ]
             },
             'thoughtful': {
-                title: '🤔 Vous êtes réfléchi',
-                description: 'Vous prenez le temps de bien réfléchir à votre situation. Nous pouvons vous aider à :'
+                badge: '🤔 Réfléchi',
+                title: 'Vous êtes réfléchi',
+                message: 'Vous prenez le temps de bien réfléchir à votre situation avant de prendre une décision. C\'est une approche prudente et réfléchie.',
+                recommendations: [
+                    'Analyser les différentes options (vente, location, conservation)',
+                    'Évaluer l\'impact financier et fiscal de chaque choix',
+                    'Prendre le temps de consulter des experts',
+                    'Impliquer les autres héritiers dans la réflexion'
+                ]
             },
             'keeper': {
-                title: '🏠 Vous souhaitez conserver le bien',
-                description: 'Vous envisagez de garder ce bien. Nous pouvons vous aider à :'
+                badge: '🏠 Conservateur',
+                title: 'Vous souhaitez conserver le bien',
+                message: 'Vous envisagez de garder ce bien, peut-être pour des raisons affectives ou pour en faire un investissement. C\'est un choix personnel important.',
+                recommendations: [
+                    'Évaluer les frais de conservation et d\'entretien',
+                    'Envisager une location pour générer des revenus',
+                    'Mettre en place une gestion efficace du bien',
+                    'Planifier l\'avenir du bien à long terme'
+                ]
             },
             'family_issues': {
-                title: '👨‍👩‍👧‍👦 Situation familiale complexe',
-                description: 'Il existe des enjeux familiaux. Nous pouvons vous aider à :'
+                badge: '👨‍👩‍👧‍👦 Situation Familiale Complexe',
+                title: 'Vous avez une situation familiale complexe',
+                message: 'Il existe des enjeux ou des tensions familiales autour de ce bien. C\'est une situation délicate qui demande de la diplomatie et de l\'expertise.',
+                recommendations: [
+                    'Médiation familiale pour trouver un accord',
+                    'Consultation juridique pour clarifier les droits',
+                    'Évaluation indépendante du bien',
+                    'Mise en place d\'une solution équitable pour tous'
+                ]
             }
         };
 
         let currentQuestion = 0;
         let answers = {};
         let selectedAppointment = null;
+        let userProfile = null;
 
         function startQuiz() {
             document.getElementById('welcomeSection').classList.remove('active');
@@ -696,48 +779,42 @@
             });
         }
 
-        function showResults() {
-            document.getElementById('contactSection').classList.remove('active');
-            document.getElementById('resultsSection').classList.add('active');
-
-            const profile = determineProfile();
-            const resultsContent = document.getElementById('resultsContent');
-            
-            let html = `
-                <div class="success-message">
-                    ✅ Vos données ont été enregistrées avec succès et transmises à notre équipe.
-                </div>
-                <div class="recommendation-card">
-                    <h3>${profile.title}</h3>
-                    <p>${profile.description}</p>
-                    <ul style="margin-top: 10px; margin-left: 20px; color: #666; font-size: 14px;">
-                        <li>Évaluer la meilleure stratégie pour votre situation</li>
-                        <li>Vous accompagner dans les démarches administratives</li>
-                        <li>Trouver des solutions adaptées à votre contexte familial</li>
-                        <li>Maximiser la valeur de votre bien</li>
-                    </ul>
-                </div>
-            `;
-            
-            resultsContent.innerHTML = html;
-
-            generateAppointmentSlots();
-        }
-
         function determineProfile() {
             const q4 = answers['q4'];
             const q5 = answers['q5'];
             const q6 = answers['q6'];
 
             if (q6 === 'yes_obstacle' || q6 === 'maybe_obstacle') {
-                return recommendations['family_issues'];
+                return 'family_issues';
             } else if (q4 === 'yes_sell' && (q5 === '3months' || q5 === '6months')) {
-                return recommendations['fast_seller'];
+                return 'fast_seller';
             } else if (q4 === 'no_sell') {
-                return recommendations['keeper'];
+                return 'keeper';
             } else {
-                return recommendations['thoughtful'];
+                return 'thoughtful';
             }
+        }
+
+        function showResults() {
+            document.getElementById('contactSection').classList.remove('active');
+            document.getElementById('resultsSection').classList.add('active');
+
+            userProfile = determineProfile();
+            const profile = profiles[userProfile];
+            
+            document.getElementById('profileBadge').textContent = profile.badge;
+            document.getElementById('resultsMessage').textContent = profile.message;
+            
+            const recommendationCard = document.getElementById('recommendationCard');
+            recommendationCard.innerHTML = `
+                <h3>${profile.title}</h3>
+                <p>Nous pouvons vous aider à :</p>
+                <ul>
+                    ${profile.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+                </ul>
+            `;
+
+            generateAppointmentSlots();
         }
 
         function generateAppointmentSlots() {
@@ -756,7 +833,7 @@
             slots.forEach((slot, index) => {
                 const div = document.createElement('div');
                 div.className = 'appointment-slot';
-                div.innerHTML = `<strong>${slot.time}</strong><br><small>${slot.day} ${slot.date}</small>`;
+                div.innerHTML = `<strong>${slot.time}</strong><small>${slot.day} ${slot.date}</small>`;
                 div.onclick = () => selectAppointment(index, div);
                 container.appendChild(div);
             });
@@ -795,6 +872,7 @@
             currentQuestion = 0;
             answers = {};
             selectedAppointment = null;
+            userProfile = null;
             
             document.getElementById('welcomeSection').classList.add('active');
             document.getElementById('quizSection').classList.remove('active');
