@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz Succession - Quelle est la meilleure manière d'avancer sereinement ?</title>
     <style>
         * {
@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
@@ -28,33 +28,6 @@
             max-width: 700px;
             width: 100%;
             padding: 40px;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            border-radius: 10px;
-            transition: width 0.3s ease;
         }
 
         .question-badge {
@@ -99,9 +72,8 @@
         }
 
         .option.selected {
-            border-color: #667eea;
+            border: 2px solid #667eea;
             background: #f0f4ff;
-            border-style: solid;
         }
 
         .button {
@@ -113,33 +85,69 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-        }
-
-        .button-primary {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
         }
 
-        .button-primary:hover {
+        .button:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
         }
 
-        .button-primary:disabled {
+        .button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            transform: none;
         }
 
-        /* Page de résultats */
-        .results-page {
+        .hidden {
             display: none;
         }
 
-        .results-page.active {
-            display: block;
+        /* Page de contact */
+        .contact-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .privacy-notice {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #1565c0;
+            margin-bottom: 20px;
+        }
+
+        /* Page de résultats */
         .results-header {
             text-align: center;
             margin-bottom: 30px;
@@ -190,12 +198,6 @@
             font-weight: 600;
             margin-top: 15px;
             width: 100%;
-            transition: all 0.3s ease;
-        }
-
-        .guide-button:hover {
-            background: #45a049;
-            transform: translateY(-2px);
         }
 
         .cta-section {
@@ -210,9 +212,6 @@
             font-size: 20px;
             font-weight: 700;
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .cta-benefits {
@@ -243,76 +242,9 @@
             cursor: pointer;
             font-weight: 600;
             width: 100%;
-            transition: all 0.3s ease;
-        }
-
-        .booking-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Page de contact */
-        .contact-page {
-            display: none;
-        }
-
-        .contact-page.active {
-            display: block;
-        }
-
-        .contact-title {
-            font-size: 20px;
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            font-family: inherit;
-            transition: border-color 0.3s ease;
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .privacy-notice {
-            background: #e3f2fd;
-            border-left: 4px solid #2196F3;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            color: #1565c0;
-            margin-bottom: 20px;
         }
 
         /* Page d'agenda */
-        .calendar-page {
-            display: none;
-        }
-
-        .calendar-page.active {
-            display: block;
-        }
-
         .calendar-title {
             font-size: 20px;
             color: #333;
@@ -355,39 +287,11 @@
             border-radius: 10px;
             text-align: center;
             color: #2e7d32;
-            display: none;
-        }
-
-        .confirmation-message.active {
-            display: block;
-        }
-
-        .confirmation-message h3 {
-            margin-bottom: 10px;
-        }
-
-        .error-message {
-            background: #ffebee;
-            border: 2px solid #f44336;
-            padding: 12px;
-            border-radius: 8px;
-            color: #c62828;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .error-message.active {
-            display: block;
         }
 
         .loading {
-            display: none;
             text-align: center;
             padding: 20px;
-        }
-
-        .loading.active {
-            display: block;
         }
 
         .spinner {
@@ -405,8 +309,13 @@
             100% { transform: rotate(360deg); }
         }
 
-        .hidden {
-            display: none;
+        .error-message {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            padding: 12px;
+            border-radius: 8px;
+            color: #c62828;
+            margin-bottom: 20px;
         }
 
         @media (max-width: 600px) {
@@ -425,13 +334,9 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="app">
         <!-- Page du Quiz -->
-        <div id="quizPage" class="quiz-page active">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-
+        <div id="quizPage">
             <div class="question-badge">
                 <span id="questionNumber">Question 1</span> / 7
             </div>
@@ -440,18 +345,18 @@
 
             <div class="options" id="optionsContainer"></div>
 
-            <button class="button button-primary" id="nextButton" onclick="nextQuestion()" disabled>
+            <button class="button" id="nextButton" onclick="nextQuestion()" disabled>
                 Question suivante
             </button>
         </div>
 
         <!-- Page de Contact -->
-        <div id="contactPage" class="contact-page">
+        <div id="contactPage" class="hidden">
             <div class="contact-title">
                 🙏 Merci pour vos réponses ! Pour recevoir votre bilan personnalisé, merci de renseigner vos coordonnées :
             </div>
 
-            <div class="error-message" id="errorMessage"></div>
+            <div class="error-message hidden" id="errorMessage"></div>
 
             <form onsubmit="submitContact(event)">
                 <div class="form-group">
@@ -473,21 +378,21 @@
                     🔒 Vos données sont confidentielles et uniquement utilisées pour vous transmettre votre bilan.
                 </div>
 
-                <div class="loading" id="loading">
+                <div class="loading hidden" id="loading">
                     <div class="spinner"></div>
                     <p>Traitement de vos données...</p>
                 </div>
 
-                <button type="submit" class="button button-primary" id="submitButton">
+                <button type="submit" class="button" id="submitButton">
                     ✅ Valider et recevoir mes résultats
                 </button>
             </form>
         </div>
 
         <!-- Page de Résultats -->
-        <div id="resultsPage" class="results-page">
+        <div id="resultsPage" class="hidden">
             <div class="results-header">
-                <div class="results-icon" id="profileIcon"></div>
+                <div class="results-icon">📊</div>
                 <h2 class="results-title">Votre bilan personnalisé</h2>
             </div>
 
@@ -515,28 +420,27 @@
         </div>
 
         <!-- Page d'Agenda -->
-        <div id="calendarPage" class="calendar-page">
+        <div id="calendarPage" class="hidden">
             <div class="calendar-title">📅 Sélectionnez votre créneau préféré</div>
 
             <div class="time-slots" id="timeSlots"></div>
 
-            <div class="confirmation-message" id="confirmationMessage">
+            <div class="confirmation-message hidden" id="confirmationMessage">
                 <h3>✅ Créneau réservé !</h3>
                 <p>Nous vous confirmerons votre rendez-vous par email/SMS.</p>
             </div>
 
-            <button class="button button-primary" id="confirmBooking" onclick="confirmBooking()" style="display: none;">
+            <button class="button hidden" id="confirmBooking" onclick="confirmBooking()" style="margin-bottom: 10px;">
                 Confirmer la réservation
             </button>
 
-            <button class="button" style="background: #999; color: white; margin-top: 10px;" onclick="backToResults()">
+            <button class="button" style="background: #999;" onclick="backToResults()">
                 Retour aux résultats
             </button>
         </div>
     </div>
 
     <script>
-        // Configuration du quiz
         const BACKEND_URL = 'https://3000-itddum2oyz5xfwc5avgpn-88307ec7.manusvm.computer/api/trpc/quiz.submit';
 
         const quiz = {
@@ -577,32 +481,26 @@
         const profiles = {
             "Le Cœur partagé": {
                 emoji: "💝",
-                icon: "📊",
                 description: "Vous êtes encore attaché(e) à cette maison et l'idée de vendre n'est pas évidente. C'est normal. Prendre une décision demande du temps, et il est important d'être bien entouré(e). Nous pouvons vous aider à clarifier les étapes, sans pression."
             },
             "Le Pragmatique": {
                 emoji: "⚡",
-                icon: "📊",
                 description: "Vous avez une vision claire et vous êtes prêt(e) à agir rapidement. Vous savez ce que vous voulez et vous cherchez les meilleures solutions. Nous pouvons vous accompagner pour optimiser votre démarche."
             },
             "Le Conservateur": {
                 emoji: "🏠",
-                icon: "📊",
                 description: "Vous préférez prendre votre temps et réfléchir à toutes les options. Vous n'êtes pas pressé(e) et c'est une bonne approche. Nous respectons votre rythme et pouvons vous conseiller quand vous serez prêt(e)."
             },
             "Le Diplomate": {
                 emoji: "👥",
-                icon: "📊",
                 description: "Vous avez plusieurs héritiers et vous cherchez une solution qui convient à tout le monde. C'est une belle responsabilité. Nous pouvons vous aider à trouver un consensus et à avancer ensemble."
             }
         };
 
-        // Initialisation
         function init() {
             displayQuestion();
         }
 
-        // Afficher la question
         function displayQuestion() {
             const question = quiz.questions[quiz.currentQuestion];
             document.getElementById('questionNumber').textContent = `Question ${quiz.currentQuestion + 1}`;
@@ -619,11 +517,9 @@
                 optionsContainer.appendChild(div);
             });
 
-            updateProgress();
             document.getElementById('nextButton').disabled = true;
         }
 
-        // Sélectionner une option
         function selectOption(index) {
             quiz.answers[quiz.currentQuestion] = index;
             const options = document.querySelectorAll('.option');
@@ -633,7 +529,6 @@
             document.getElementById('nextButton').disabled = false;
         }
 
-        // Question suivante
         function nextQuestion() {
             if (quiz.currentQuestion < quiz.questions.length - 1) {
                 quiz.currentQuestion++;
@@ -643,19 +538,11 @@
             }
         }
 
-        // Mettre à jour la barre de progression
-        function updateProgress() {
-            const progress = ((quiz.currentQuestion + 1) / quiz.questions.length) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-        }
-
-        // Afficher la page de contact
         function showContactPage() {
-            document.getElementById('quizPage').classList.remove('active');
-            document.getElementById('contactPage').classList.add('active');
+            document.getElementById('quizPage').classList.add('hidden');
+            document.getElementById('contactPage').classList.remove('hidden');
         }
 
-        // Soumettre le formulaire de contact
         async function submitContact(event) {
             event.preventDefault();
 
@@ -668,7 +555,7 @@
                 return;
             }
 
-            document.getElementById('loading').classList.add('active');
+            document.getElementById('loading').classList.remove('hidden');
             document.getElementById('submitButton').disabled = true;
 
             try {
@@ -702,34 +589,30 @@
                 console.error('Erreur:', error);
                 showError('Erreur de connexion. Veuillez réessayer.');
             } finally {
-                document.getElementById('loading').classList.remove('active');
+                document.getElementById('loading').classList.add('hidden');
                 document.getElementById('submitButton').disabled = false;
             }
         }
 
-        // Afficher les résultats
         function showResultsPage() {
-            document.getElementById('contactPage').classList.remove('active');
-            document.getElementById('resultsPage').classList.add('active');
+            document.getElementById('contactPage').classList.add('hidden');
+            document.getElementById('resultsPage').classList.remove('hidden');
 
             const profile = detectProfile();
             const profileData = profiles[profile];
 
-            document.getElementById('profileIcon').textContent = profileData.icon;
             document.getElementById('profileEmoji').textContent = profileData.emoji;
             document.getElementById('profileName').textContent = profile;
             document.getElementById('profileDescription').textContent = profileData.description;
         }
 
-        // Détecter le profil
         function detectProfile() {
             const answers = quiz.answers;
             let score = 0;
 
-            // Scoring simplifié
-            if (answers[0] === 0) score += 3; // Attachement affectif
-            if (answers[1] === 2) score += 2; // Plusieurs héritiers avec désaccords
-            if (answers[4] === 2) score += 2; // Pas d'urgence
+            if (answers[0] === 0) score += 3;
+            if (answers[1] === 2) score += 2;
+            if (answers[4] === 2) score += 2;
 
             if (score >= 5) return "Le Cœur partagé";
             if (answers[1] === 2) return "Le Diplomate";
@@ -737,10 +620,9 @@
             return "Le Conservateur";
         }
 
-        // Afficher le calendrier
         function showCalendar() {
-            document.getElementById('resultsPage').classList.remove('active');
-            document.getElementById('calendarPage').classList.add('active');
+            document.getElementById('resultsPage').classList.add('hidden');
+            document.getElementById('calendarPage').classList.remove('hidden');
 
             const timeSlots = document.getElementById('timeSlots');
             timeSlots.innerHTML = '';
@@ -763,47 +645,41 @@
             });
         }
 
-        // Sélectionner un créneau
         function selectTimeSlot(element) {
             document.querySelectorAll('.time-slot').forEach(slot => {
                 slot.classList.remove('selected');
             });
             element.classList.add('selected');
-            document.getElementById('confirmBooking').style.display = 'block';
+            document.getElementById('confirmBooking').classList.remove('hidden');
         }
 
-        // Confirmer la réservation
         function confirmBooking() {
-            document.getElementById('timeSlots').style.display = 'none';
-            document.getElementById('confirmBooking').style.display = 'none';
-            document.getElementById('confirmationMessage').classList.add('active');
+            document.getElementById('timeSlots').classList.add('hidden');
+            document.getElementById('confirmBooking').classList.add('hidden');
+            document.getElementById('confirmationMessage').classList.remove('hidden');
         }
 
-        // Retour aux résultats
         function backToResults() {
-            document.getElementById('calendarPage').classList.remove('active');
-            document.getElementById('resultsPage').classList.add('active');
-            document.getElementById('timeSlots').style.display = 'grid';
-            document.getElementById('confirmBooking').style.display = 'none';
-            document.getElementById('confirmationMessage').classList.remove('active');
+            document.getElementById('calendarPage').classList.add('hidden');
+            document.getElementById('resultsPage').classList.remove('hidden');
+            document.getElementById('timeSlots').classList.remove('hidden');
+            document.getElementById('confirmBooking').classList.add('hidden');
+            document.getElementById('confirmationMessage').classList.add('hidden');
         }
 
-        // Télécharger le guide
         function downloadGuide() {
             alert('Le guide sera envoyé par email');
         }
 
-        // Afficher erreur
         function showError(message) {
             const errorDiv = document.getElementById('errorMessage');
             errorDiv.textContent = message;
-            errorDiv.classList.add('active');
+            errorDiv.classList.remove('hidden');
             setTimeout(() => {
-                errorDiv.classList.remove('active');
+                errorDiv.classList.add('hidden');
             }, 5000);
         }
 
-        // Démarrer
         init();
     </script>
 </body>
