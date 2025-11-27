@@ -28,6 +28,18 @@
             max-width: 700px;
             width: 100%;
             padding: 40px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .question-badge {
@@ -176,10 +188,19 @@
             font-size: 24px;
             font-weight: 700;
             color: #333;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .profile-section {
+            margin-bottom: 15px;
+        }
+
+        .profile-section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #667eea;
+            text-transform: uppercase;
+            margin-bottom: 8px;
         }
 
         .profile-description {
@@ -198,6 +219,12 @@
             font-weight: 600;
             margin-top: 15px;
             width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .guide-button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
         }
 
         .cta-section {
@@ -208,10 +235,27 @@
             margin-bottom: 20px;
         }
 
+        .cta-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .cta-thank-you {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .cta-subtitle {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
         .cta-title {
             font-size: 20px;
             font-weight: 700;
             margin-bottom: 15px;
+            margin-top: 20px;
         }
 
         .cta-benefits {
@@ -242,6 +286,12 @@
             cursor: pointer;
             font-weight: 600;
             width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .booking-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* Page d'agenda */
@@ -397,24 +447,34 @@
             </div>
 
             <div class="profile-card">
-                <div class="profile-name">
-                    <span id="profileEmoji"></span>
-                    <span id="profileName"></span>
+                <div class="profile-name" id="profileName"></div>
+                
+                <div class="profile-section">
+                    <div class="profile-section-title">Description</div>
+                    <div class="profile-description" id="profileShortDesc"></div>
                 </div>
-                <div class="profile-description" id="profileDescription"></div>
-                <button class="guide-button" onclick="downloadGuide()">
-                    👉 Recevez notre guide gratuit pour avancer pas à pas
-                </button>
+
+                <div class="profile-section">
+                    <div class="profile-section-title">Message</div>
+                    <div class="profile-description" id="profileMessage"></div>
+                </div>
+
+                <button class="guide-button" id="profileCTA" onclick="downloadGuide()"></button>
             </div>
 
             <div class="cta-section">
+                <div class="cta-header">
+                    <div class="cta-thank-you">Merci d'avoir complété ce test 🙏</div>
+                    <div class="cta-subtitle">Chaque succession est unique, et chaque famille mérite d'avancer en toute sérénité.</div>
+                </div>
+
                 <div class="cta-title">🎁 Pour aller plus loin, nous vous offrons :</div>
                 <ul class="cta-benefits">
                     <li>Un entretien gratuit et confidentiel (30 min) pour parler de votre situation</li>
                     <li>Une estimation claire et sans engagement de la valeur de votre bien</li>
                 </ul>
                 <button class="booking-button" onclick="showCalendar()">
-                    👉 Réserver votre créneau dès maintenant
+                    👉 Cliquez ici pour réserver votre créneau dès maintenant
                 </button>
             </div>
         </div>
@@ -480,20 +540,19 @@
 
         const profiles = {
             "Le Cœur partagé": {
-                emoji: "💝",
-                description: "Vous êtes encore attaché(e) à cette maison et l'idée de vendre n'est pas évidente. C'est normal. Prendre une décision demande du temps, et il est important d'être bien entouré(e). Nous pouvons vous aider à clarifier les étapes, sans pression."
+                shortDesc: "Vous êtes encore attaché(e) à cette maison et l'idée de vendre n'est pas évidente.",
+                message: "C'est normal. Prendre une décision demande du temps, et il est important d'être bien entouré(e). Nous pouvons vous aider à clarifier les étapes, sans pression.",
+                cta: "👉 Recevez notre guide gratuit pour avancer pas à pas"
             },
-            "Le Pragmatique": {
-                emoji: "⚡",
-                description: "Vous avez une vision claire et vous êtes prêt(e) à agir rapidement. Vous savez ce que vous voulez et vous cherchez les meilleures solutions. Nous pouvons vous accompagner pour optimiser votre démarche."
+            "Le Médiateur": {
+                shortDesc: "Vous souhaitez avancer, mais la succession est compliquée, avec des désaccords familiaux ou des démarches lourdes.",
+                message: "Dans ce cas, être accompagné par un professionnel neutre peut vraiment aider à débloquer la situation.",
+                cta: "👉 Réservez un entretien gratuit et confidentiel pour explorer vos solutions"
             },
-            "Le Conservateur": {
-                emoji: "🏠",
-                description: "Vous préférez prendre votre temps et réfléchir à toutes les options. Vous n'êtes pas pressé(e) et c'est une bonne approche. Nous respectons votre rythme et pouvons vous conseiller quand vous serez prêt(e)."
-            },
-            "Le Diplomate": {
-                emoji: "👥",
-                description: "Vous avez plusieurs héritiers et vous cherchez une solution qui convient à tout le monde. C'est une belle responsabilité. Nous pouvons vous aider à trouver un consensus et à avancer ensemble."
+            "Le Décidé": {
+                shortDesc: "Vous êtes prêt(e) à vendre rapidement pour simplifier la succession et tourner la page.",
+                message: "Bravo, vous avez franchi une étape importante. Avec un accompagnement adapté, votre vente peut se concrétiser dans les meilleures conditions.",
+                cta: "👉 Demandez votre estimation gratuite dès maintenant"
             }
         };
 
@@ -601,23 +660,34 @@
             const profile = detectProfile();
             const profileData = profiles[profile];
 
-            document.getElementById('profileEmoji').textContent = profileData.emoji;
             document.getElementById('profileName').textContent = profile;
-            document.getElementById('profileDescription').textContent = profileData.description;
+            document.getElementById('profileShortDesc').textContent = profileData.shortDesc;
+            document.getElementById('profileMessage').textContent = profileData.message;
+            document.getElementById('profileCTA').textContent = profileData.cta;
         }
 
         function detectProfile() {
             const answers = quiz.answers;
             let score = 0;
 
-            if (answers[0] === 0) score += 3;
-            if (answers[1] === 2) score += 2;
-            if (answers[4] === 2) score += 2;
+            // Scoring pour "Le Cœur partagé"
+            if (answers[0] === 0) score += 3; // Attachement affectif
+            if (answers[1] === 2) score += 2; // Plusieurs héritiers avec désaccords
+            if (answers[4] === 2) score += 2; // Pas d'urgence
 
             if (score >= 5) return "Le Cœur partagé";
-            if (answers[1] === 2) return "Le Diplomate";
-            if (answers[4] === 0) return "Le Pragmatique";
-            return "Le Conservateur";
+            
+            // Scoring pour "Le Médiateur"
+            if (answers[1] === 2 || (answers[3] === 1 && answers[4] !== 0)) {
+                return "Le Médiateur";
+            }
+            
+            // Scoring pour "Le Décidé"
+            if (answers[4] === 0 || (answers[3] === 0 && answers[0] === 2)) {
+                return "Le Décidé";
+            }
+            
+            return "Le Cœur partagé";
         }
 
         function showCalendar() {
