@@ -728,7 +728,13 @@
                             fullName: fullName,
                             phone: phone,
                             address: address,
-                            answers: answers
+                            q1_sentiment: answers.q1 || null,
+                            q2_heirs: answers.q2 || null,
+                            q3_property_state: answers.q3 || null,
+                            q4_family_discussion: answers.q4 || null,
+                            q5_timeline: answers.q5 || null,
+                            q6_obstacle: answers.q6 || null,
+                            q7_consultation: answers.q7 || null
                         }
                     })
                 });
